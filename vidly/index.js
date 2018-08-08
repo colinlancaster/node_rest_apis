@@ -1,3 +1,5 @@
+// This entire file is known as the Request Pipeline
+
 // Joi returns a class, so use Pascal casing
 const Joi = require('joi');
 const express = require('express');

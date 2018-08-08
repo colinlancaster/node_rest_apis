@@ -1,10 +1,16 @@
+// THIS IS YOUR EXPRESS PIPELINE
+
 // Joi returns a class, so use Pascal casing
 const Joi = require('joi');
 const express = require('express');
 const app = express();
 
+const logger = require('./logger');
+
 // Middleware
 app.use(express.json());
+
+app.use(logger);
 
 const courses = [
   {id: 1, name:"course1"},
@@ -81,13 +87,6 @@ app.put('/api.courses/:id', (req, res) => {
   // Return the updated course
 });
 
-// app.put('/', (req, res) => {
-
-// });
-
-// app.delete('/', (req, res) => {
-
-// });
 
 
 // PORT
