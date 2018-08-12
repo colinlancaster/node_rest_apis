@@ -7,8 +7,6 @@ const genres = [
   {id: 3, genreName:"Action"},
 ];
 
-
-
 router.get('/', (req, res) => {
   res.send(genres);
 });
