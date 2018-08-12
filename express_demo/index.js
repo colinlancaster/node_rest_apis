@@ -3,91 +3,52 @@
 // Joi returns a class, so use Pascal casing
 const Joi = require('joi');
 const express = require('express');
+const helmet = require('helmet');
+const morgan = require('morgan'); // Fantastic logger middleware
+const logger = require('./middleware/logger');
+const config = require('config');
+const courses = require('./routes/courses');
+const home = require('./routes/home');
+const startupDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
+
+
 const app = express();
 
-const logger = require('./logger');
+// NOTE: To changeenvironment variable to production run the following command in terminal
+// export NODE_ENV=production
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`app: ${app.get('env')}`);
 
-// Middleware
+// Set view engine
+
+app.set('view engine', 'pug');
+app.set('views', './views'); // Default location of templates or views. This is default so you don't need to set it. But this is how you do, just in case you want the templates in a new location.
+
+// MIDDLEWARE
 app.use(express.json());
-
+// Extended: true makes it possible to send complex objects in the url.
+app.use(express.urlencoded({ extended: true })); // key=value&key=value
+app.use(express.static('public')); // Note that this content is served from the root of the site.
+app.use(helmet()); // Secures your app with special headers
 app.use(logger);
-
-const courses = [
-  {id: 1, name:"course1"},
-  {id: 2, name:"course2"},
-  {id: 3, name:"course3"},
-
-];
-app.get('/', (req, res) => {
-  res.send('Hello World!!!!!!!');
-});
-
-app.get('/api/courses', (req, res) => {
-  res.send(courses);
-});
-
-// /api/courses/1
-
-app.get('/api/courses/:id', (req, res) => {
-  const course = courses.find(course => course.id === parseInt(req.params.id));
-  if (!course) {
-    res.status(404).send("The course with the given ID was not found!")
-  } else {
-      res.send(course)
-  }
-});
-
-app.post('/api/courses', (req, res) => {
-
-  // This is the basic idea of input validation on a REST API
-  // However, in the real world, we work with significantly more
-  // complex objects. That's where the NPM package Joi comes 
-  // into play
-
-  const schema = {
-    name: Joi.string().min(3).required()
-  };
-  const result = Joi.validate(req.body, schema);
-  if(result.error){
-    res.status(400).send(result.error.details[0].message);
-    return;
-  }
-
-  // if (!req.body.name || req.body.name.length < 3) {
-  //   // 400 Bad Request
-  //   res.status(400).send('Name is required, and should be a minimum of 3 characters');
-  //   // This is the same thing as `break;`.
-  //   // We don't want the rest of the function to be executed.
-  //   return;
-  // }
-  const course = {
-    id: courses.length + 1,
-    name: req.body.name
-  };
-
-  courses.push(course);
-  res.send(course);
-});
-
-app.put('/api.courses/:id', (req, res) => {
-  // Look up course
-
-  // If !course - return 404
-  const course = courses.find(course => course.id === parseInt(req.params.id));
-  if (!course) {
-    res.status(404).send("The course with the given ID was not found!")
-  } else {
-      res.send(course)
-  }
-
-  // Validate
-  // If invalid, return 400 - Bad Req
-
-  // Update course
-  // Return the updated course
-});
+app.use('/api/courses', courses); // For any route that starts with /api/courses, use the courses module
+app.use('/', home);
+// END MIDDLEWARE
 
 
+// CONFIGURATION
+// console.log('Application Name: ' + config.get('name'));
+// console.log('Mail Server Name: ' + config.get('mail.host'));
+// console.log('Mail Server Password: ' + config.get('mail.password'));\
+if (app.get('env') === 'development'){
+  app.use(morgan('tiny')); // Fantastic logger
+  startupDebugger('Morgan enabled');
+}
+// END CONFIGURATION
+// DB work...
+
+dbDebugger("Connected to DB");
 
 // PORT
 const port = process.env.PORT || 3000;

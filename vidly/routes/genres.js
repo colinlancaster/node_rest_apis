@@ -78,7 +78,6 @@ router.put('/:id', (req, res) => {
   // Update genre
   genre.genreName = req.body.genreName;
   res.send(genre); // Return the updated genre
-
 });
 
 router.delete('/:id', (req, res) => {
