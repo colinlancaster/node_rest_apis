@@ -19,27 +19,51 @@ const courseSchema = new mongoose.Schema({
 const Course = mongoose.model('Course', courseSchema); // Remember this is a class
 
 async function createCourse() {
-  try {
-    const course = new Course({
-      name: 'Angular Course',
-      author: 'Colin',
-      tags: ['angular', 'frontend'],
-      isPublished: true
-    }); // Remember this is an object
+  const course = new Course({
+    name: 'Angular Course',
+    author: 'Colin',
+    tags: ['angular', 'frontend'],
+    isPublished: true
+  }); // Remember this is an object
 
-    const result = await course.save();
-    console.log(result);
-  } catch (error) {
-      console.log('Error', error)
-  }
+  const result = await course.save();
+  console.log(result);
+
 }
 
 async function getCourses() {
+  // Mongoose comparison operators
+  // eq (equal)
+  // ne (not equal)
+  // gt (greater than)
+  // gte (greater than or equal to)
+  // lt (less than)
+  // lte (less than or equal to)
+  // in
+  // nin (not in)
+
+  // Logical operators
+  // or
+  // and
+
   const courses = await Course
-    .find({ author: 'Colin', isPublished: true }) // This is a 'filter'
+    //.find({ author: 'Colin', isPublished: true }) // This is a 'filter'
+    // .find({price: 10})
+    // .find({price: { $gte: 10 }}) // greater than 10
+    // .find({price: { $gte: 10, $lte: 20 }}) // In between 10 and 20
+    // .find({price: { $in: [10, 15, 20 ]} })
+    // .find()
+    // .or([{author: 'Colin'}, { isPublished: true}]) // each obj is a filter
+    // .and([{}, {}])
+    // starts with Colin
+    // .find({author: /^Colin/i }) // ^ = starts with reg ex. /i = case insensitive
+    // .find({author: /Lancaster$/i }) // ends with Lancaster. i = case insensitive
+    // // Contains Colin
+    // .find({author: /.*Colin.*/}) // 0 or more chars before or after Colin
+    .find()
     .limit(10)
     .sort({ name: 1 })
-    .select({ name: 1, tags: 1});
+    .count();
   console.log(courses);
 }
 
