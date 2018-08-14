@@ -46,7 +46,17 @@ async function getCourses() {
   // or
   // and
 
+  const pageNumber = 2;
+  const pageSize = 10;
+
+  // /api/courses?pageNumber=2&pageSize=10
+
   const courses = await Course
+    .find({ author: 'Colin', isPublished: true })
+    .skip((pageNumber -1) * pageSize)
+    .limit(pageSize)
+    .sort( { name: 1 } ) // Sort by name
+    .select({ name: 1, tags: 1 })
     //.find({ author: 'Colin', isPublished: true }) // This is a 'filter'
     // .find({price: 10})
     // .find({price: { $gte: 10 }}) // greater than 10
@@ -60,10 +70,10 @@ async function getCourses() {
     // .find({author: /Lancaster$/i }) // ends with Lancaster. i = case insensitive
     // // Contains Colin
     // .find({author: /.*Colin.*/}) // 0 or more chars before or after Colin
-    .find()
-    .limit(10)
-    .sort({ name: 1 })
-    .count();
+    // .find()
+    // .limit(10)
+    // .sort({ name: 1 })
+    // .count();
   console.log(courses);
 }
 
