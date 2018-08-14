@@ -52,11 +52,11 @@ async function getCourses() {
   // /api/courses?pageNumber=2&pageSize=10
 
   const courses = await Course
-    .find({ author: 'Colin', isPublished: true })
-    .skip((pageNumber -1) * pageSize)
-    .limit(pageSize)
-    .sort( { name: 1 } ) // Sort by name
-    .select({ name: 1, tags: 1 })
+    .find({ isPublished: true })
+    // .skip((pageNumber -1) * pageSize)
+    // .limit(pageSize)
+    // .sort( { name: 1 } ) // Sort by name
+    // .select({ name: 1, tags: 1 })
     //.find({ author: 'Colin', isPublished: true }) // This is a 'filter'
     // .find({price: 10})
     // .find({price: { $gte: 10 }}) // greater than 10
@@ -77,4 +77,63 @@ async function getCourses() {
   console.log(courses);
 }
 
-getCourses();
+// Approach 1: Query first
+  // findById()
+  // Modify Properties
+  // save()
+  // This is common
+// async function updateCourse(id) {
+//   const course = await Course.findById(id);
+//   if (!course) return 'No course available with that ID.';
+
+//   course.isPublished = true;
+//   course.author = 'Another author';
+//   // This is an identical approach to the above two lines
+//   // course.set({
+//   //   isPublished: true,
+//   //   author: 'Another Author'
+//   // });
+
+//   const result = await course.save();
+//   console.log(result);
+// }
+// updateCourse('5b70ad753806173e885d6a22');
+
+
+// Approach 2: Update first
+// Update directly to DB
+// Optionally: get update document.
+// we are focusing on 2
+
+// async function updateCourse(id) {
+//   const result = await Course.update({_id: id}, {
+//     $set: {
+//       author: 'Colin',
+//       isPublished: false
+//     }
+//   });
+//   console.log(result);
+// }
+
+// This is a way of simplifying the above
+
+async function updateCourse(id) {
+  const course = await Course.findByIdAndUpdate(id, {
+    $set: {
+      author: 'Bo Jackson',
+      isPublished: false
+    }
+  }, {new: true});
+}
+
+updateCourse('5b70ad753806173e885d6a22');
+
+async function removeCourse(id) {
+  const result = await Course.deleteOne({ _id: id }); // use deleteMany to delete...well...many
+  console.log(result);
+}
+
+removeCourse('5b70ad753806173e885d6a22');
+
+// createCourse();
+// getCourses();
