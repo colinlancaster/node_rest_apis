@@ -8,26 +8,71 @@ mongoose.connect('mongodb://localhost/playground')
 
   // Once we have a schema...
 const courseSchema = new mongoose.Schema({
-  name: String,
+  name: { 
+    type: String, 
+    required: true,
+    minlength: 5 ,
+    maxlength: 255
+    // match: /pattern/
+  }, // This is an example of validation
+  category: {
+    type: String,
+    required: true,
+    enum: ['web', 'mobile', 'network'],
+    lowercase: true,
+    // uppercase: true,
+    trim: true
+  },
   author: String,
-  tags: [ String ],
+  // tags: [ String ],
+  tags: {
+    type: Array,
+    validate: {
+      isAsync: true,
+      validator: function(v, callback) {
+        // Do some async work
+        setTimeout(() => {
+          const result = v && v.length > 0;
+          callback(result);
+        }, 4000);
+      },
+      message: 'A course should have at least one tag'
+    }
+  },
   date: { type: Date, default: Date.now },
-  isPublished: Boolean
+  isPublished: Boolean,
+  price: {
+    type: Number,
+    required: function() { return this.isPublished },
+    min: 10,
+    max: 200,
+    get: v => Math.round(v),
+    set: v => Math.round(v),
+  }
 });
-
-// ... We need to compile it into model.
 const Course = mongoose.model('Course', courseSchema); // Remember this is a class
 
 async function createCourse() {
   const course = new Course({
     name: 'Angular Course',
     author: 'Colin',
-    tags: ['angular', 'frontend'],
-    isPublished: true
+    tags: ['Frontend'],
+    isPublished: true,
+    category: 'web',
+    price: 15.87
   }); // Remember this is an object
 
-  const result = await course.save();
-  console.log(result);
+  try {
+    const result = await course.save();
+    console.log(result);
+
+  } catch (error) {
+    // console.log(error.message);
+    for (field in error.errors) {
+      console.log(error.errors[field])
+    }
+    error.errors.tags;
+  }
 
 }
 
@@ -52,7 +97,10 @@ async function getCourses() {
   // /api/courses?pageNumber=2&pageSize=10
 
   const courses = await Course
-    .find({ isPublished: true })
+    // .find({ isPublished: true })
+    .find({ _id: "5b83738a8c09363f4825ce09"})
+    .sort({ name: 1 })
+    .select({ name: 1, tags: 1, price: 1 });
     // .skip((pageNumber -1) * pageSize)
     // .limit(pageSize)
     // .sort( { name: 1 } ) // Sort by name
@@ -133,7 +181,8 @@ async function removeCourse(id) {
   console.log(result);
 }
 
-removeCourse('5b70ad753806173e885d6a22');
+// removeCourse('5b70ad753806173e885d6a22');
 
 // createCourse();
-// getCourses();
+// createCourse();
+getCourses();
