@@ -286,3 +286,20 @@ price: {
     set: v => Math.round(v)
   }
 ```
+
+Stick this somewhere else later...
+```
+// NOTE THE FOLLOWING CODE BLOCK PRODUCES THE SAME RESULT
+  // AS THE ONE THAT IS NOT COMMENTED OUT.
+  // This is the basic idea of input validation on a REST API
+  // However, in the real world, we work with significantly more
+  // complex objects. That's where the NPM package Joi comes into play
+  // const schema = {
+  //   name: Joi.string().min(3).required()
+  // };
+  // const result = Joi.validate(req.body, schema);
+  // if(result.error){
+  //   res.status(400).send(result.error.details[0].message);
+  //   return;
+  // }
+```
