@@ -328,3 +328,22 @@ Using Embedded Documents (Denormalization)
 * It is possible that you will have some course documents that are not updated. You might end up with inconsistent data.
 
 *
+
+## Object ID
+
+The MongoDB Driver itself generates a 12 byte _id.
+Mongoose is an abstraction over the MongoDB driver.
+
+```
+const mongoose = require('mongoose');
+
+const id = new mongoose.Types.ObjectId();
+
+console.log(id);
+console.log(id.getTimestamp());
+
+// Checks if the given ID is valid.
+const isValid = mongoose.Types.ObjectId.isValid('1234');
+console.log(isValid);
+
+```

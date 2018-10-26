@@ -45,9 +45,11 @@ router.post('/', async (req, res) => {
         $inc: { numberInStock: -1 }
       })
       .run();
-      res.send(rental);
+    res.send(rental);
   }
   catch(ex) {
     res.status(500).send('Something failed.');
   }
 });
+
+module.exports = router;
