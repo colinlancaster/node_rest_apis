@@ -1,4 +1,5 @@
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const { Genre, validate } = require('../models/genre');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -38,7 +39,8 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /api/genres/:id
-router.delete('/:id', async (req, res) => {
+// [auth, admin] <= order matters here.
+router.delete('/:id', [auth, admin], async (req, res) => {
 
   const genre = await Genre.findByIdAndRemove(req.params.id);
   // If it doesn't exist, return 404

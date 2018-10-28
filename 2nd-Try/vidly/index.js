@@ -1,5 +1,6 @@
 // This entire file is known as the Request Pipeline
 const config = require('config');
+const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const mongoose = require('mongoose');
