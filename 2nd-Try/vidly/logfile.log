@@ -1,0 +1,37 @@
+{"message":"Something failed miserably!","stack":"Error: Something failed miserably!\n    at Object.<anonymous> (C:\\_src\\training\\node_rest_apis\\2nd-try\\vidly\\index.js:37:26)\n    at Module._compile (module.js:643:30)\n    at Object.Module._extensions..js (module.js:654:10)\n    at Module.load (module.js:556:32)\n    at tryModuleLoad (module.js:499:12)\n    at Function.Module._load (module.js:491:3)\n    at Function.Module.runMain (module.js:684:10)\n    at startup (bootstrap_node.js:187:16)\n    at bootstrap_node.js:608:3","level":"error","timestamp":"2018-10-28T21:37:26.488Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:05:29.415Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:05:51.801Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:05:55.121Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:05:57.140Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:06:10.180Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:07:11.920Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:07:31.679Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:07:39.776Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:07:43.922Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:07:46.053Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:07:48.438Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:07:50.748Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:07:53.945Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:09:42.150Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:09:55.818Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:10:07.253Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:11:11.555Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:11:24.583Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:11:47.696Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:11:56.405Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:12:10.392Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:12:21.479Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:12:32.522Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:12:34.466Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:13:38.751Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:14:08.392Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-10-28T22:14:12.267Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:14:13.293Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-10-28T22:14:49.257Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:14:50.273Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-10-28T22:15:54.414Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:15:55.428Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-10-28T22:16:02.242Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:16:03.270Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-10-28T22:16:09.181Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-10-28T22:16:10.195Z"}

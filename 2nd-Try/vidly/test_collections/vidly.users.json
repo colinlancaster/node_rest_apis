@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5bd60418d1781231c4b0d15e"},"name":"Dua Lipa","email":"dua.lipa@gmail.com","password":"dualipa"}
+{"_id":{"$oid":"5bd6050c067c4e0bc440898e"},"name":"Colin Lancaster","email":"lancaster.colin@gmail.com","password":"$2a$10$7YFVPleVlbts1Nenh/gY.u9zqY4RucIVuQA1eEyVKS8IVDbCThWf.","__v":{"$numberInt":"0"}}

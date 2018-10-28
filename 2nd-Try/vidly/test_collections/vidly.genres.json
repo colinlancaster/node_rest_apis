@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5bd60351d1781231c4b0d159"},"name":"Sci-Fi"}
+{"_id":{"$oid":"5bd60358d1781231c4b0d15a"},"name":"Action"}
+{"_id":{"$oid":"5bd60361d1781231c4b0d15b"},"name":"Thriller"}

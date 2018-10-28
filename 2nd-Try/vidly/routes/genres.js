@@ -1,3 +1,4 @@
+const asyncMiddleware = require('../middleware/async');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const { Genre, validate } = require('../models/genre');
@@ -7,6 +8,7 @@ const router = express.Router();
 
 // GET /api/genres
 router.get('/', async (req, res) => {
+  throw new Error('Could not get the genres.');
   const genres = await Genre.find().sort('name');
   res.send(genres);
 });
@@ -22,7 +24,7 @@ router.post('/', auth, async (req, res) => {
   res.send(genre);
 });
 
-// PUT /api/genres
+// PUT /api/genressd
 router.put('/:id', async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);

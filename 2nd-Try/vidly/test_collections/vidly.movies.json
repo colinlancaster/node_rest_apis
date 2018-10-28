@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5bd6037cd1781231c4b0d15c"},"title":"Halloween","genreId":"5bd60351d1781231c4b0d159","numberInStock":{"$numberInt":"23"},"dailyRentalRate":{"$numberDouble":"1.23"}}
