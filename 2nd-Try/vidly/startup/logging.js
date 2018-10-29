@@ -17,6 +17,4 @@ module.exports = function() {
     db: 'mongodb://localhost/vidly',
     level: 'info'
   });
-
-
 }
