@@ -347,3 +347,14 @@ const isValid = mongoose.Types.ObjectId.isValid('1234');
 console.log(isValid);
 
 ```
+
+## Authentication and Authorization
+
+Authentication is the process of identifying if the user is who they claim they are. AKA log in.
+
+Authorization is determining if the user has the right permission to perform the given operation.
+
+For each user you want name, email, and password. 
+
+
+> Javascript Hint: object destructuring syntax is used when the function being called returns more than one value.

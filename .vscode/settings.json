@@ -1,5 +1,6 @@
 {
   "jscs.enable": false,
   "standard.enable": false,
-  "tslint.enable": false
+  "tslint.enable": false,
+  "git.ignoreLimitWarning": true
 }

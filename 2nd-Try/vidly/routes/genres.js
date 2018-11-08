@@ -1,3 +1,4 @@
+const validateObjectId = require('../middleware/validateObjectId');
 const asyncMiddleware = require('../middleware/async');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
@@ -8,6 +9,7 @@ const router = express.Router();
 
 // GET /api/genres
 router.get('/', async (req, res) => {
+  //throw new Error('Could not get the genres.');
   const genres = await Genre.find().sort('name');
   res.send(genres);
 });
@@ -41,8 +43,8 @@ router.put('/:id', async (req, res) => {
 
 // DELETE /api/genres/:id
 // [auth, admin] <= order matters here.
-router.delete('/:id', [auth, admin], async (req, res) => {
-
+// '/:id', [auth, admin], async (req, res) <-- This is what it looks like w/ auth
+router.delete('/:id', async (req, res) => {
   const genre = await Genre.findByIdAndRemove(req.params.id);
   // If it doesn't exist, return 404
   if (!genre) return res.status(404).send("The genre with the given ID was not found!");
@@ -51,7 +53,7 @@ router.delete('/:id', [auth, admin], async (req, res) => {
 });
 
 // GET SPECIFIC /api/genres/:id
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateObjectId, async (req, res) => {
   const genre = await Genre.findById(req.params.id);
   if (!genre) return res.status(404).send('The genre with the given ID cannot be found.');
   res.send(genre);
